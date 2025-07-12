@@ -1,0 +1,14 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Setup React Native
+    init: |
+      npx react-native@latest init MyApp --version 0.74.1
+      mv MyApp/{.,}* .
+      rm -rf MyApp
+      npm install -g androidjs-builder@2.0.2
+      androidjs init
+  - name: Start Emulator
+    command: androidjs serve --port 3000
+    openMode: split-right
